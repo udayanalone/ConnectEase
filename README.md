@@ -1,4 +1,4 @@
-# Data Manager
+# ConnectEase
 
 A Java Spring Boot web application for data management, featuring user authentication and multiple pages.
 
@@ -75,10 +75,10 @@ All endpoints render Thymeleaf templates.
 
 ## Project Flow
 
-The Data Manager application follows a user-centric workflow for managing personal contacts and reminders. Below is the complete flow:
+The ConnectEase application follows a user-centric workflow for managing personal contacts and reminders. Below is the complete flow:
 
 ### Public Access
-1. **Entry Point**: Users access the application at `http://localhost:8082` (root redirects to `/home`)
+1. **Entry Point**: Users access the application at [`http://localhost:8082](https://connectease.up.railway.app/home)` (root redirects to `/home`)
 2. **Public Pages**: Browse informational pages including Home, About, Service, and Contact without authentication
 
 ### User Registration & Authentication
