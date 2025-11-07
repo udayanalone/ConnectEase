@@ -11,7 +11,7 @@ function App() {
                 <nav className="navbar navbar-expand-lg">
                     <div className="container">
                         <Link className="navbar-brand" to="/">
-                            <span className="gradient-text">📊 DataManager</span>
+                            <span className="gradient-text">📊 ConnectEase</span>
                         </Link>
                         <button
                             className="navbar-toggler"
@@ -101,7 +101,7 @@ const Home = () => {
                 <div className="col-lg-10">
                     <div className="hero-section text-center mb-5">
                         <h1 className="display-4 mb-4 animate-fade-in">
-                            Welcome to DataManager
+                            Welcome to ConnectEase
                         </h1>
                         <p className="lead mb-5 animate-fade-in-delay">
                             A stunning user management system with modern design and seamless functionality

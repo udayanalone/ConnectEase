@@ -1,70 +1,127 @@
-# Getting Started with Create React App
+# Data Manager
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A Java Spring Boot web application for data management, featuring user authentication and multiple pages.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **Web Pages**: Home, About, Service, Signup, Login, Contact
+- **Templates**: Thymeleaf-based views for all pages
+- **Database**: MySQL with JPA/Hibernate integration
+- **Security**: Basic Spring Security for authentication
 
-### `npm start`
+## Prerequisites
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Java 17 or higher
+- Maven 3.6+
+- MySQL 8.0+
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Installation and Setup
 
-### `npm test`
+1. **Clone the repository**:
+   ```
+   git clone <repository-url>
+   cd Data-Manager
+   ```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. **Database Setup**:
+   - Install and start MySQL
+   - Create a database named `data_manager` (or configure as needed)
 
-### `npm run build`
+3. **Configure Database**:
+   - Update `src/main/resources/application.properties` with your MySQL credentials:
+     ```
+     spring.datasource.url=jdbc:mysql://localhost:3306/data_manager
+     spring.datasource.username=your_username
+     spring.datasource.password=your_password
+     ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+4. **Build and Run**:
+   ```
+   mvn clean install
+   mvn spring-boot:run
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+5. **Access the Application**:
+   - Open your browser and navigate to `http://localhost:8082`
+   - Note: The root path "/" is not mapped; use `/home` as the entry point
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Available Endpoints
 
-### `npm run eject`
+- `/home` - Home page
+- `/about` - About page
+- `/service` - Service page
+- `/signup` - User registration
+- `/login` - User login
+- `/contact` - Contact page
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+All endpoints render Thymeleaf templates.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Project Structure
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- `src/main/java/` - Java source code
+- `src/main/resources/` - Application properties and templates
+- `src/main/resources/templates/` - Thymeleaf view templates
+- `pom.xml` - Maven configuration
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Technologies Used
 
-## Learn More
+- Spring Boot
+- Spring MVC
+- Spring Security
+- Thymeleaf
+- JPA/Hibernate
+- MySQL
+- Maven
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Project Flow
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+The Data Manager application follows a user-centric workflow for managing personal contacts and reminders. Below is the complete flow:
 
-### Code Splitting
+### Public Access
+1. **Entry Point**: Users access the application at `http://localhost:8082` (root redirects to `/home`)
+2. **Public Pages**: Browse informational pages including Home, About, Service, and Contact without authentication
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### User Registration & Authentication
+3. **Sign Up**: Navigate to `/signup` to create a new account with email, password, and profile details
+4. **Login**: Use `/loginPage` to authenticate with email and password
+5. **Dashboard**: After successful login, users are redirected to their personal dashboard showing contact count and quick stats
 
-### Analyzing the Bundle Size
+### Contact Management
+6. **View Contacts**: Access `/user/contacts` to see all saved contacts with search and filter capabilities
+   - Search by name, email, or phone
+   - Filter favorites
+   - View contact details
+7. **Add Contacts**: Create new contacts via `/user/contacts/add` with fields like name, email, phone, address, description, and social links
+8. **Edit/Delete Contacts**: Modify or remove existing contacts with proper ownership validation
+9. **Contact Actions**:
+   - Mark/unmark as favorite
+   - Export contacts to CSV
+   - Import contacts from CSV
+   - Bulk operations (favorite, unfavorite, delete multiple contacts)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Reminder Management
+10. **View Reminders**: Access `/user/reminders` to see all scheduled reminders
+11. **Manage Reminders**: Add, edit, and delete reminders linked to specific contacts or standalone
 
-### Making a Progressive Web App
+### User Profile Management
+12. **Profile**: View and update personal information at `/user/profile`
+13. **Settings**: Modify account settings at `/user/settings` including:
+    - Update profile details
+    - Change password
+    - Delete account (with confirmation)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Security & Navigation
+- All user-specific endpoints require authentication
+- Spring Security handles login/logout and session management
+- Users can only access their own data (contacts, reminders, profile)
 
-### Advanced Configuration
+The application ensures data integrity with validation, error handling, and user-friendly feedback messages throughout the workflow.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Contributing
 
-### Deployment
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
