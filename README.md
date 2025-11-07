@@ -20,7 +20,7 @@ A Java Spring Boot web application for data management, featuring user authentic
 1. **Clone the repository**:
    ```
    git clone <repository-url>
-   cd Data-Manager
+   cd ConnectEase
    ```
 
 2. **Database Setup**:
